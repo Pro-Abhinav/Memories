@@ -9,8 +9,6 @@ import postRoutes from './routes/posts.js';
 dotenv.config();
 const app = express();
 
-app.use('/posts', postRoutes);
-
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(cors());
@@ -20,3 +18,5 @@ mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedT
     .catch((error) => console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
+
+app.use('/posts', postRoutes);
